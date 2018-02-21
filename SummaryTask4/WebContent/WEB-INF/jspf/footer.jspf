@@ -1,0 +1,25 @@
+<%--=========================================================================== 
+Footer (bottom area). 
+===========================================================================--%> 
+<%@ page pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/jspf/directive/page.jspf" %>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
+<%@ include file="/WEB-INF/jspf/head.jspf" %>
+
+<fmt:setLocale value="${not empty sessionScope.lang ? sessionScope.lang : 'en_US'}" scope="session"/>
+<fmt:setBundle basename="ua.nure.skibnev.SummaryTask4.loc.localization"/>
+
+<!--<tr>
+	<td id="footer">&copy;<fmt:message key="footer.text"/></td>
+ </tr>
+  -->
+  <div class="navbar-fixed-bottom">
+  <div class="footer-bottom">
+    <div class="container">
+        <div class="row">
+    		<div class="col-md-12 widget"><fmt:message key="footer.text"/>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

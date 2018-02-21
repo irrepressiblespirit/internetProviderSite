@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1"  
+  xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+<tlibversion>1.0</tlibversion>
+<shortname>mytag</shortname>
+<uri>/WEB-INF/mytaglib.tld</uri>
+<tag>
+	<name>downloadlist</name>
+	<tag-class>ua.nure.skibnev.SummaryTask4.web.tags.CreateDownloadList</tag-class>
+	<body-content>empty</body-content>
+</tag>
+</taglib> 

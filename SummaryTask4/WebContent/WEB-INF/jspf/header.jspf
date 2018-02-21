@@ -1,0 +1,130 @@
+<%--=========================================================================== 
+Header (top area). 
+===========================================================================--%> 
+
+<%@ page import="ua.nure.skibnev.SummaryTask4.db.Role" %>
+<%@ include file="/WEB-INF/jspf/directive/page.jspf" %>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
+<%@ taglib uri="/WEB-INF/mytaglib.tld" prefix="tag" %>
+
+<fmt:setLocale value="${not empty sessionScope.lang ? sessionScope.lang : 'en_US'}" scope="session"/>
+<fmt:setBundle basename="ua.nure.skibnev.SummaryTask4.loc.localization"/>
+
+<tr>
+<td id="header">
+<c:set var="i" value="${sessionScope.usr}"></c:set>
+<c:if test="${not empty i}">
+<%--=========================================================================== 
+This is the user menu. 
+===========================================================================--%> 
+<!--
+<div id="leftHeader">
+
+	<c:choose>
+
+<%--=========================================================================== 
+This way we define the ADMIN MENU. 
+===========================================================================--%> 
+		<c:when test="${i.getRole() == 'admin' and pageName=='settingsUsers'}">
+			<a href="controller?command=selectRates"><fmt:message key="user.select.rate"/></a>
+		</c:when>
+
+<%--=========================================================================== 
+This way we define the USER MENU.
+===========================================================================--%> 
+		<c:when test="${i.getRole() == 'subscriber' and pageName=='userStartPage'}">
+			<a href="controller?command=userRate"><fmt:message key="client.rate.list"/></a> &nbsp;
+		</c:when>
+		
+		<c:when test="${i.getRole() == 'subscriber' and pageName=='userRates'}">
+			<table>
+			<tr><td><fmt:message key="client.sorted.rate"/>:</td><td><a href="controller?command=userRate"><fmt:message key="client.sorted.rate.az"/></a></td><td><a href="controller?command=sortZA"><fmt:message key="client.sorted.rate.za"/></a></td><td><a href="controller?command=sortPrice"><fmt:message key="client.sorted.rate.price"/></a></td><td><tag:downloadlist/></td></tr>
+			</table>
+		</c:when>
+		
+	</c:choose>
+	
+<%--=========================================================================== 
+This way we define the settings anchor.
+===========================================================================--%> 
+	<%--<a href="controller?command=viewSettings">Settings</a> &nbsp;--%>
+
+</div>
+
+<%--=========================================================================== 
+This way we define the menu located at the right of header. 
+===========================================================================--%> 
+<div id="rightHeader" >
+
+<%--=========================================================================== 
+Type user name if the user================================================--%> 
+	<c:out value="${i.getFirstName()} ${i.getLastName()}"/>
+	
+<%--=========================================================================== 
+Type user role name if the user object is presented in the current session.  
+===========================================================================--%> 
+	<c:if test="${not empty i.getRole()}">
+		<c:out value="(${i.getRole()})"/>
+	</c:if>
+
+<%--=========================================================================== 
+Type link to logout  
+===========================================================================--%> 
+	<a href="controller?command=logout">
+		<fmt:message key="app.header.logout"/>
+	</a> 	
+
+</div>
+ -->
+ <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="nav navbar-nav">
+      <c:choose>
+      <c:when test="${i.getRole() == 'admin' and pageName=='settingsUsers'}">
+			<a href="controller?command=selectRates"><fmt:message key="user.select.rate"/></a>
+		</c:when>
+		<c:when test="${i.getRole() == 'subscriber' and pageName=='userStartPage'}">
+			<a href="controller?command=userRate"><fmt:message key="client.rate.list"/></a> &nbsp;
+		</c:when>
+		<c:when test="${i.getRole() == 'subscriber' and pageName=='userRates'}">
+			<table>
+			<tr><td><fmt:message key="client.sorted.rate"/>:</td><td><a href="controller?command=userRate"><fmt:message key="client.sorted.rate.az"/></a></td><td><a href="controller?command=sortZA"><fmt:message key="client.sorted.rate.za"/></a></td><td><a href="controller?command=sortPrice"><fmt:message key="client.sorted.rate.price"/></a></td><td><tag:downloadlist/></td></tr>
+			</table>
+		</c:when>
+		</c:choose>
+      </div>
+     
+      <div class="nav navbar-nav navbar-right">
+        <c:out value="${i.getFirstName()} ${i.getLastName()}"/>
+        <c:if test="${not empty i.getRole()}">
+		   <c:out value="(${i.getRole()})"/>
+	    </c:if>
+	    <a href="controller?command=logout">
+		<fmt:message key="app.header.logout"/>
+	    </a>
+      </div>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</c:if>
+
+<c:if test="${empty i and title ne 'Login'}">
+	<div id="rightHeader">
+		<a href="login.jsp">Login</a>
+	</div>
+</c:if>
+
+	</td>
+</tr>
